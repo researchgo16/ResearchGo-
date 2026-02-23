@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ResearchGo — Konsultasi Penulisan Akademik Profesional</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #0A1628;
+  --blue:    #1346A0;
+  --blue-mid:#1E5FD8;
+  --sky:     #3B82F6;
+  --sky-lt:  #93C5FD;
+  --accent:  #E8F0FE;
+  --white:   #FFFFFF;
+  --off:     #F7F9FF;
+  --muted:   #64748B;
+  --border:  #E2E8F0;
+  --text:    #1A2740;
+  --gold:    #F59E0B;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--off);}
+::-webkit-scrollbar-thumb{background:var(--blue-mid);border-radius:3px;}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(10,22,40,0.97);
+  backdrop-filter:blur(16px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6%;height:68px;
+  border-bottom:1px solid rgba(59,130,246,0.15);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  text-decoration:none;
+}
+.logo-mark{
+  width:36px;height:36px;
+  background:linear-gradient(135deg,var(--blue-mid),var(--sky));
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-weight:700;color:white;
+  letter-spacing:-1px;
+  flex-shrink:0;
+}
+.logo-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;font-weight:700;
+  color:var(--white);letter-spacing:0.02em;
+}
+.logo-text span{color:var(--sky);}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+.nav-links a{
+  color:rgba(255,255,255,0.7);
+  text-decoration:none;font-size:0.88rem;
+  font-weight:500;letter-spacing:0.03em;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--sky-lt);}
+.nav-cta{
+  background:var(--blue-mid)!important;
+  color:white!important;
+  padding:0.55rem 1.3rem!important;
+  border-radius:6px!important;
+  font-weight:600!important;
+  transition:background 0.2s,transform 0.2s!important;
+}
+.nav-cta:hover{background:var(--sky)!important;transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+.hamburger span{width:22px;height:2px;background:rgba(255,255,255,0.8);display:block;transition:all 0.3s;}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;padding-top:68px;
+  background:var(--navy);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(59,130,246,0.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(59,130,246,0.06) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-glow{
+  position:absolute;top:-20%;right:-10%;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(30,95,216,0.25) 0%,transparent 70%);
+}
+.hero-glow-2{
+  position:absolute;bottom:-10%;left:-5%;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,0.12) 0%,transparent 70%);
+}
+.hero-inner{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:4rem;
+  padding:5rem 6%;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(59,130,246,0.12);
+  border:1px solid rgba(59,130,246,0.3);
+  color:var(--sky-lt);
+  font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;
+  padding:0.4rem 1rem;border-radius:20px;
+  margin-bottom:1.5rem;
+  animation:fadeUp 0.7s 0.1s both;
+}
+.hero-badge::before{content:'●';color:var(--sky);font-size:0.5rem;}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,5vw,4.4rem);
+  color:var(--white);line-height:1.1;
+  margin-bottom:1.5rem;
+  animation:fadeUp 0.7s 0.2s both;
+}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--sky-lt),var(--sky));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  color:rgba(255,255,255,0.6);
+  font-size:1.05rem;line-height:1.75;
+  margin-bottom:2.5rem;
+  animation:fadeUp 0.7s 0.3s both;
+}
+.hero-btns{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  animation:fadeUp 0.7s 0.4s both;
+}
+.btn-prim{
+  background:linear-gradient(135deg,var(--blue-mid),var(--sky));
+  color:white;padding:0.9rem 2rem;
+  border-radius:8px;font-weight:600;
+  font-size:0.92rem;text-decoration:none;
+  letter-spacing:0.02em;border:none;cursor:pointer;
+  font-family:'Outfit',sans-serif;
+  box-shadow:0 4px 20px rgba(30,95,216,0.4);
+  transition:transform 0.2s,box-shadow 0.2s;display:inline-block;
+}
+.btn-prim:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(30,95,216,0.5);}
+.btn-sec{
+  background:transparent;
+  color:rgba(255,255,255,0.85);
+  padding:0.9rem 2rem;border-radius:8px;
+  border:1px solid rgba(255,255,255,0.2);
+  font-weight:500;font-size:0.92rem;
+  text-decoration:none;transition:border-color 0.2s,color 0.2s;
+  display:inline-block;
+}
+.btn-sec:hover{border-color:var(--sky);color:var(--sky-lt);}
+
+/* Hero Stats */
+.hero-stats{
+  display:flex;gap:2rem;margin-top:3rem;padding-top:2rem;
+  border-top:1px solid rgba(255,255,255,0.08);
+  animation:fadeUp 0.7s 0.5s both;
+}
+.h-stat{}
+.h-stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:700;color:var(--white);
+  display:block;line-height:1;
+}
+.h-stat-label{
+  color:rgba(255,255,255,0.45);
+  font-size:0.78rem;letter-spacing:0.05em;margin-top:0.3rem;display:block;
+}
+
+/* Hero Visual */
+.hero-visual{
+  position:relative;
+  animation:fadeUp 0.7s 0.35s both;
+}
+.hero-card-main{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(59,130,246,0.2);
+  border-radius:16px;padding:2rem;
+  backdrop-filter:blur(10px);
+}
+.hero-card-main h3{
+  color:var(--white);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;margin-bottom:1.5rem;
+  padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.hc-item{
+  display:flex;align-items:center;gap:0.85rem;
+  padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.hc-item:last-child{border:none;}
+.hc-icon{
+  width:38px;height:38px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+}
+.hc-icon.blue{background:rgba(59,130,246,0.15);}
+.hc-icon.sky{background:rgba(147,197,253,0.1);}
+.hc-icon.gold{background:rgba(245,158,11,0.12);}
+.hc-icon.green{background:rgba(16,185,129,0.12);}
+.hc-text strong{color:var(--white);font-size:0.9rem;display:block;font-weight:500;}
+.hc-text span{color:rgba(255,255,255,0.45);font-size:0.78rem;}
+.hc-badge{
+  margin-left:auto;
+  background:rgba(16,185,129,0.15);
+  color:#34D399;font-size:0.7rem;
+  padding:0.2rem 0.6rem;border-radius:12px;
+  font-weight:600;white-space:nowrap;
+}
+.hero-card-float{
+  position:absolute;top:-1.5rem;right:-1.5rem;
+  background:linear-gradient(135deg,var(--blue-mid),#0E3A8C);
+  border-radius:12px;padding:1rem 1.2rem;
+  text-align:center;
+  box-shadow:0 8px 30px rgba(10,22,40,0.5);
+  border:1px solid rgba(59,130,246,0.3);
+  min-width:120px;
+}
+.hcf-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;font-weight:700;color:white;display:block;
+}
+.hcf-label{color:rgba(255,255,255,0.6);font-size:0.72rem;letter-spacing:0.05em;}
+
+/* ─── TRUST STRIP ─── */
+.trust-strip{
+  background:var(--off);padding:1.5rem 6%;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:3rem;flex-wrap:wrap;justify-content:center;
+}
+.trust-label{
+  color:var(--muted);font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;
+  white-space:nowrap;font-weight:500;
+}
+.trust-logos{display:flex;gap:2.5rem;align-items:center;flex-wrap:wrap;}
+.trust-logo{
+  color:var(--muted);font-size:0.85rem;font-weight:600;
+  letter-spacing:0.05em;opacity:0.6;white-space:nowrap;
+  font-family:'Cormorant Garamond',serif;font-size:1rem;
+}
+
+/* ─── SECTION COMMONS ─── */
+section{padding:5.5rem 6%;}
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--blue-mid);font-size:0.78rem;
+  letter-spacing:0.15em;text-transform:uppercase;
+  font-weight:600;margin-bottom:0.85rem;
+}
+.section-eyebrow::before{
+  content:'';width:24px;height:2px;background:var(--blue-mid);display:block;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  color:var(--navy);line-height:1.2;margin-bottom:1rem;
+}
+.section-sub{
+  color:var(--muted);font-size:1rem;line-height:1.75;max-width:560px;
+}
+
+/* ─── LAYANAN ─── */
+.layanan{background:var(--white);}
+.layanan-head{text-align:center;margin-bottom:3.5rem;}
+.layanan-head .section-sub{margin:0 auto;}
+.layanan-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;
+}
+.layanan-card{
+  border:1px solid var(--border);border-radius:12px;
+  padding:2.2rem;position:relative;
+  overflow:hidden;transition:all 0.3s;cursor:default;
+}
+.layanan-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue-mid),var(--sky));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.35s ease;
+}
+.layanan-card:hover{
+  border-color:rgba(30,95,216,0.3);
+  box-shadow:0 8px 40px rgba(19,70,160,0.1);
+  transform:translateY(-3px);
+}
+.layanan-card:hover::before{transform:scaleX(1);}
+.lc-icon-wrap{
+  width:56px;height:56px;border-radius:12px;
+  background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;margin-bottom:1.3rem;
+  transition:background 0.3s;
+}
+.layanan-card:hover .lc-icon-wrap{background:rgba(30,95,216,0.1);}
+.layanan-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;color:var(--navy);
+  margin-bottom:0.75rem;
+}
+.layanan-card p{color:var(--muted);font-size:0.92rem;line-height:1.7;margin-bottom:1.3rem;}
+.lc-features{list-style:none;display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1.5rem;}
+.lc-features li{
+  font-size:0.85rem;color:var(--text);
+  display:flex;align-items:center;gap:0.5rem;
+}
+.lc-features li::before{content:'✓';color:var(--blue-mid);font-weight:700;font-size:0.8rem;}
+.lc-link{
+  color:var(--blue-mid);font-size:0.88rem;font-weight:600;
+  text-decoration:none;letter-spacing:0.02em;
+  display:inline-flex;align-items:center;gap:0.4rem;
+  transition:gap 0.2s;
+}
+.lc-link:hover{gap:0.7rem;color:var(--sky);}
+.lc-badge{
+  position:absolute;top:1.5rem;right:1.5rem;
+  background:linear-gradient(135deg,var(--blue-mid),var(--sky));
+  color:white;font-size:0.7rem;font-weight:600;
+  padding:0.25rem 0.6rem;border-radius:20px;
+  letter-spacing:0.05em;text-transform:uppercase;
+}
+
+/* ─── PROSES ─── */
+.proses{background:var(--navy);position:relative;overflow:hidden;}
+.proses-bg{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(59,130,246,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(59,130,246,0.04) 1px,transparent 1px);
+  background-size:50px 50px;
+}
+.proses .section-eyebrow{color:var(--sky-lt);}
+.proses .section-title{color:var(--white);}
+.proses .section-sub{color:rgba(255,255,255,0.55);}
+.proses-head{text-align:center;margin-bottom:4rem;}
+.proses-head .section-sub{margin:0 auto;}
+.proses-steps{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:0;position:relative;
+}
+.proses-steps::before{
+  content:'';position:absolute;
+  top:35px;left:10%;right:10%;height:2px;
+  background:linear-gradient(90deg,var(--blue-mid),var(--sky),var(--blue-mid));
+  opacity:0.3;
+}
+.step-item{text-align:center;position:relative;padding:0 0.5rem;}
+.step-num{
+  width:70px;height:70px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.05);
+  border:2px solid rgba(59,130,246,0.3);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.2rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;font-weight:700;color:var(--sky);
+  position:relative;z-index:1;
+  transition:all 0.3s;
+}
+.step-item:hover .step-num{
+  background:var(--blue-mid);
+  border-color:var(--blue-mid);
+  color:white;
+  box-shadow:0 0 30px rgba(30,95,216,0.4);
+}
+.step-icon{font-size:1.4rem;display:block;margin-bottom:0.3rem;}
+.step-item h4{color:var(--white);font-size:0.9rem;font-weight:600;margin-bottom:0.5rem;}
+.step-item p{color:rgba(255,255,255,0.45);font-size:0.8rem;line-height:1.5;}
+
+/* ─── WHY US ─── */
+.why{background:var(--off);}
+.why-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+}
+.why-list{display:flex;flex-direction:column;gap:1.2rem;margin-top:2rem;}
+.why-item{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1.2rem;background:var(--white);border-radius:10px;
+  border:1px solid var(--border);
+  transition:all 0.3s;
+}
+.why-item:hover{
+  border-color:rgba(30,95,216,0.25);
+  box-shadow:0 4px 20px rgba(19,70,160,0.07);
+}
+.wi-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:700;
+  color:rgba(30,95,216,0.15);
+  line-height:1;flex-shrink:0;width:40px;
+}
+.wi-body strong{color:var(--navy);font-size:0.95rem;font-weight:600;display:block;margin-bottom:0.3rem;}
+.wi-body p{color:var(--muted);font-size:0.88rem;line-height:1.6;}
+
+/* Why Visual */
+.why-visual{position:relative;}
+.why-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;padding:2rem;
+  box-shadow:0 8px 40px rgba(0,0,0,0.06);
+}
+.wc-top{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1.5rem;padding-bottom:1.2rem;
+  border-bottom:1px solid var(--border);
+}
+.wc-top span{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;color:var(--navy);font-weight:600;
+}
+.wc-badge{
+  background:rgba(16,185,129,0.1);color:#059669;
+  font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;
+  border-radius:20px;
+}
+.wc-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;
+  margin-bottom:1.5rem;
+}
+.wcs{text-align:center;padding:1rem;background:var(--off);border-radius:8px;}
+.wcs-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:700;color:var(--blue);display:block;
+}
+.wcs-label{color:var(--muted);font-size:0.75rem;}
+.wc-bar-section h5{
+  color:var(--navy);font-size:0.82rem;font-weight:600;
+  letter-spacing:0.05em;margin-bottom:1rem;text-transform:uppercase;
+}
+.wc-bar-item{margin-bottom:0.75rem;}
+.wc-bar-label{
+  display:flex;justify-content:space-between;
+  font-size:0.82rem;color:var(--muted);margin-bottom:0.3rem;
+}
+.wc-bar-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.wc-bar-fill{
+  height:100%;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue-mid),var(--sky));
+  animation:barGrow 1.5s ease both;
+}
+@keyframes barGrow{from{width:0!important;}to{}}
+.why-float{
+  position:absolute;bottom:-1.5rem;right:-1.5rem;
+  background:linear-gradient(135deg,var(--blue-mid),#0A1E5E);
+  border-radius:12px;padding:1.2rem 1.5rem;
+  text-align:center;
+  box-shadow:0 8px 30px rgba(10,22,40,0.25);
+  border:1px solid rgba(59,130,246,0.2);
+}
+.wf-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:700;color:white;display:block;
+}
+.wf-label{color:rgba(255,255,255,0.6);font-size:0.75rem;}
+
+/* ─── HARGA / PAKET ─── */
+.harga{background:var(--white);}
+.harga-head{text-align:center;margin-bottom:3.5rem;}
+.harga-head .section-sub{margin:0 auto;}
+.paket-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start;
+}
+.paket-card{
+  border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;transition:all 0.3s;
+}
+.paket-card:hover{transform:translateY(-4px);box-shadow:0 12px 50px rgba(19,70,160,0.12);}
+.paket-card.featured{
+  border-color:var(--blue-mid);
+  box-shadow:0 8px 40px rgba(19,70,160,0.15);
+  transform:scale(1.02);
+}
+.paket-card.featured:hover{transform:scale(1.02) translateY(-4px);}
+.paket-header{padding:1.8rem 1.8rem 1.2rem;}
+.paket-card.featured .paket-header{
+  background:linear-gradient(135deg,var(--navy),#0D2F6B);
+}
+.ph-tag{
+  font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;
+  font-weight:700;margin-bottom:0.75rem;display:block;
+}
+.paket-card:not(.featured) .ph-tag{color:var(--blue-mid);}
+.paket-card.featured .ph-tag{color:var(--sky-lt);}
+.paket-card.featured h3{color:white;}
+.paket-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;color:var(--navy);margin-bottom:0.5rem;
+}
+.paket-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;font-weight:700;
+  margin:0.5rem 0;display:block;line-height:1;
+}
+.paket-card:not(.featured) .paket-price{color:var(--blue);}
+.paket-card.featured .paket-price{color:var(--sky-lt);}
+.paket-price sup{font-size:1rem;vertical-align:top;margin-top:0.4rem;display:inline-block;}
+.paket-period{font-size:0.8rem;display:block;margin-top:0.25rem;}
+.paket-card:not(.featured) .paket-period{color:var(--muted);}
+.paket-card.featured .paket-period{color:rgba(255,255,255,0.5);}
+.paket-body{padding:1.5rem 1.8rem 1.8rem;}
+.paket-desc{color:var(--muted);font-size:0.88rem;margin-bottom:1.2rem;line-height:1.6;}
+.paket-features{list-style:none;display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.8rem;}
+.paket-features li{
+  display:flex;gap:0.6rem;align-items:flex-start;
+  font-size:0.88rem;color:var(--text);
+}
+.paket-features li .chk{color:var(--blue-mid);font-weight:700;flex-shrink:0;margin-top:0.05rem;}
+.paket-features li .x{color:var(--muted);font-weight:400;}
+.paket-features li.dim{opacity:0.45;}
+.paket-btn{
+  width:100%;padding:0.9rem;border-radius:8px;
+  font-family:'Outfit',sans-serif;
+  font-size:0.92rem;font-weight:600;
+  cursor:pointer;transition:all 0.2s;text-align:center;
+  text-decoration:none;display:block;
+}
+.paket-btn.outline{
+  border:1.5px solid var(--blue-mid);color:var(--blue-mid);background:transparent;
+}
+.paket-btn.outline:hover{background:var(--accent);}
+.paket-btn.solid{
+  background:linear-gradient(135deg,var(--blue-mid),var(--sky));
+  color:white;border:none;
+  box-shadow:0 4px 16px rgba(30,95,216,0.35);
+}
+.paket-btn.solid:hover{box-shadow:0 6px 24px rgba(30,95,216,0.5);transform:translateY(-1px);}
+.featured-badge{
+  background:var(--gold);color:var(--navy);
+  text-align:center;padding:0.4rem;
+  font-size:0.75rem;font-weight:700;letter-spacing:0.05em;
+  text-transform:uppercase;
+}
+
+/* ─── TESTIMONI ─── */
+.testimoni{background:var(--off);}
+.testimoni-head{text-align:center;margin-bottom:3.5rem;}
+.testimoni-head .section-sub{margin:0 auto;}
+.testi-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+}
+.testi-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;padding:1.8rem;
+  transition:all 0.3s;
+}
+.testi-card:hover{
+  border-color:rgba(30,95,216,0.2);
+  box-shadow:0 6px 30px rgba(19,70,160,0.08);
+}
+.tc-quote{
+  font-size:2.5rem;color:var(--sky-lt);
+  line-height:1;margin-bottom:0.75rem;
+  font-family:'Cormorant Garamond',serif;
+}
+.tc-text{
+  color:var(--muted);font-size:0.92rem;line-height:1.75;
+  margin-bottom:1.5rem;font-style:italic;
+}
+.tc-bottom{display:flex;align-items:center;gap:0.85rem;}
+.tc-avatar{
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blue-mid),var(--sky));
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-weight:700;font-size:1rem;
+  font-family:'Cormorant Garamond',serif;flex-shrink:0;
+}
+.tc-name{color:var(--navy);font-size:0.9rem;font-weight:600;display:block;}
+.tc-role{color:var(--muted);font-size:0.78rem;}
+.tc-stars{color:var(--gold);font-size:0.85rem;letter-spacing:1px;margin-top:0.2rem;}
+
+/* ─── FAQ ─── */
+.faq{background:var(--white);}
+.faq-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;
+}
+.faq-list{display:flex;flex-direction:column;gap:1px;}
+.faq-item{
+  border:1px solid var(--border);border-radius:10px;
+  overflow:hidden;margin-bottom:0.5rem;
+  transition:border-color 0.2s;
+}
+.faq-item.open{border-color:rgba(30,95,216,0.3);}
+.faq-q{
+  width:100%;background:none;border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 1.3rem;text-align:left;
+  font-family:'Outfit',sans-serif;
+  font-size:0.92rem;font-weight:500;color:var(--navy);
+  gap:1rem;transition:color 0.2s;
+}
+.faq-item.open .faq-q{color:var(--blue-mid);}
+.faq-icon{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.85rem;color:var(--blue-mid);
+  flex-shrink:0;transition:transform 0.3s,background 0.2s;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--blue-mid);color:white;}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height 0.35s ease;
+  padding:0 1.3rem;
+  color:var(--muted);font-size:0.88rem;line-height:1.7;
+}
+.faq-a.open{max-height:200px;padding:0 1.3rem 1.1rem;}
+
+/* ─── KONTAK ─── */
+.kontak{
+  background:linear-gradient(135deg,var(--navy) 0%,#0E2451 100%);
+  position:relative;overflow:hidden;
+}
+.kontak-glow{
+  position:absolute;top:-20%;right:-10%;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(30,95,216,0.2) 0%,transparent 70%);
+}
+.kontak-inner{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;
+}
+.kontak .section-eyebrow{color:var(--sky-lt);}
+.kontak .section-title{color:var(--white);}
+.kontak .section-sub{color:rgba(255,255,255,0.55);}
+.kontak-detail-list{display:flex;flex-direction:column;gap:1.2rem;margin-top:2rem;}
+.kontak-detail{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1rem;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;
+}
+.kd-icon{font-size:1.2rem;flex-shrink:0;margin-top:0.1rem;}
+.kd-body strong{color:var(--white);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:0.2rem;}
+.kd-body span{color:rgba(255,255,255,0.5);font-size:0.88rem;}
+
+.kontak-form{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;padding:2.5rem;
+}
+.kontak-form h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;color:var(--white);margin-bottom:0.5rem;
+}
+.kontak-form p{color:rgba(255,255,255,0.5);font-size:0.88rem;margin-bottom:1.8rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fg{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem;}
+.fg label{color:rgba(255,255,255,0.7);font-size:0.8rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;}
+.fg input,.fg textarea,.fg select{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:8px;padding:0.8rem 1rem;
+  color:var(--white);font-family:'Outfit',sans-serif;
+  font-size:0.92rem;outline:none;
+  transition:border-color 0.2s;
+}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,0.25);}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--sky);}
+.fg select option{background:var(--navy);color:white;}
+.fg textarea{resize:vertical;min-height:100px;}
+
+/* ─── FOOTER ─── */
+footer{background:#050D1A;padding:4rem 6% 2rem;}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;
+  padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.06);
+  margin-bottom:2rem;
+}
+.footer-brand p{
+  color:rgba(255,255,255,0.4);font-size:0.87rem;
+  line-height:1.7;margin:1rem 0 1.5rem;
+}
+.footer-social{display:flex;gap:0.6rem;}
+.fs-link{
+  width:34px;height:34px;border-radius:8px;
+  border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.85rem;text-decoration:none;
+  transition:all 0.2s;
+}
+.fs-link:hover{border-color:var(--sky);background:rgba(59,130,246,0.1);}
+.footer-col h4{
+  color:rgba(255,255,255,0.8);font-size:0.82rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.1rem;
+}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.55rem;}
+.footer-links a{
+  color:rgba(255,255,255,0.4);text-decoration:none;
+  font-size:0.87rem;transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--sky-lt);}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-bottom p{color:rgba(255,255,255,0.25);font-size:0.8rem;}
+.footer-bottom a{color:rgba(59,130,246,0.7);text-decoration:none;}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(28px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.1s;}
+.reveal-delay-2{transition-delay:0.2s;}
+.reveal-delay-3{transition-delay:0.3s;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:3rem;}
+  .hero-card-float{display:none;}
+  .paket-grid{grid-template-columns:1fr;}
+  .paket-card.featured{transform:scale(1);}
+  .footer-top{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  section{padding:4rem 5%;}
+  nav{padding:0 5%;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .layanan-grid,.why-inner,.faq-inner,.kontak-inner{grid-template-columns:1fr;}
+  .proses-steps{grid-template-columns:1fr 1fr;gap:2rem;}
+  .proses-steps::before{display:none;}
+  .testi-grid{grid-template-columns:1fr;}
+  .wc-stats{grid-template-columns:repeat(3,1fr);}
+  .form-row{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="top">
+  <a href="#top" class="nav-logo">
+    <div class="logo-mark">Rg</div>
+    <div class="logo-text">Research<span>Go</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#layanan">Layanan</a></li>
+    <li><a href="#proses">Proses</a></li>
+    <li><a href="#paket">Paket</a></li>
+    <li><a href="#testimoni">Testimoni</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#kontak" class="nav-cta">Konsultasi Gratis</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <span class="hero-badge">Konsultasi Akademik Profesional</span>
+      <h1>Wujudkan Karya Akademik<br><em>Terbaik Anda</em> Bersama Kami</h1>
+      <p class="hero-sub">ResearchGo hadir sebagai mitra konsultasi penulisan akademik terpercaya — dari skripsi, tesis, editing, publikasi jurnal, hingga pelatihan riset. Dibimbing langsung oleh konsultan berpengalaman.</p>
+      <div class="hero-btns">
+        <a href="#kontak" class="btn-prim">Mulai Konsultasi Gratis →</a>
+        <a href="#layanan" class="btn-sec">Lihat Layanan</a>
+      </div>
+      <div class="hero-stats">
+        <div class="h-stat">
+          <span class="h-stat-num">2.400+</span>
+          <span class="h-stat-label">Klien Terlayani</span>
+        </div>
+        <div class="h-stat">
+          <span class="h-stat-num">98%</span>
+          <span class="h-stat-label">Tingkat Kepuasan</span>
+        </div>
+        <div class="h-stat">
+          <span class="h-stat-num">300+</span>
+          <span class="h-stat-label">Jurnal Terbit</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card-float">
+        <span class="hcf-num">A+</span>
+        <span class="hcf-label">Nilai Rata-rata<br>Klien Kami</span>
+      </div>
+      <div class="hero-card-main">
+        <h3>📋 Layanan Aktif Hari Ini</h3>
+        <div class="hc-item">
+          <div class="hc-icon blue">📝</div>
+          <div class="hc-text">
+            <strong>Konsultasi Skripsi & Tesis</strong>
+            <span>Bimbingan menyeluruh dari BAB 1 s.d. sidang</span>
+          </div>
+          <span class="hc-badge">Populer</span>
+        </div>
+        <div class="hc-item">
+          <div class="hc-icon sky">✏️</div>
+          <div class="hc-text">
+            <strong>Editing & Proofreading</strong>
+            <span>Koreksi bahasa, tata tulis & konsistensi</span>
+          </div>
+          <span class="hc-badge">Cepat</span>
+        </div>
+        <div class="hc-item">
+          <div class="hc-icon gold">📰</div>
+          <div class="hc-text">
+            <strong>Publikasi Jurnal</strong>
+            <span>Sinta 1–6, Scopus & WOS terindeks</span>
+          </div>
+          <span class="hc-badge">Garansi</span>
+        </div>
+        <div class="hc-item">
+          <div class="hc-icon green">🎓</div>
+          <div class="hc-text">
+            <strong>Pelatihan Akademik</strong>
+            <span>Workshop riset, metodologi & statistika</span>
+          </div>
+          <span class="hc-badge">Terbaru</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <span class="trust-label">Dipercaya oleh mahasiswa dari</span>
+  <div class="trust-logos">
+    <span class="trust-logo">Universitas Indonesia</span>
+    <span class="trust-logo">UGM</span>
+    <span class="trust-logo">ITS Surabaya</span>
+    <span class="trust-logo">UNAIR</span>
+    <span class="trust-logo">UNDIP</span>
+    <span class="trust-logo">UNS</span>
+    <span class="trust-logo">UB Malang</span>
+  </div>
+</div>
+
+<!-- LAYANAN -->
+<section class="layanan" id="layanan">
+  <div class="layanan-head reveal">
+    <p class="section-eyebrow">Apa yang Kami Tawarkan</p>
+    <h2 class="section-title">Layanan Unggulan ResearchGo</h2>
+    <p class="section-sub">Solusi lengkap untuk setiap tahap perjalanan akademik Anda — dari penelitian hingga publikasi internasional.</p>
+  </div>
+  <div class="layanan-grid">
+
+    <div class="layanan-card reveal">
+      <span class="lc-badge">Terlaris</span>
+      <div class="lc-icon-wrap">📝</div>
+      <h3>Konsultasi Skripsi & Tesis</h3>
+      <p>Pendampingan intensif dari penyusunan judul, latar belakang, metodologi, analisis data, hingga persiapan sidang. Kami memastikan karya Anda lolos dengan nilai terbaik.</p>
+      <ul class="lc-features">
+        <li>Bimbingan per-bab secara personal</li>
+        <li>Review & revisi tidak terbatas</li>
+        <li>Konsultasi via WhatsApp/Zoom</li>
+        <li>Bantuan analisis data (SPSS, AMOS, R)</li>
+        <li>Simulasi tanya jawab sidang</li>
+      </ul>
+      <a href="#kontak" class="lc-link">Mulai Sekarang →</a>
+    </div>
+
+    <div class="layanan-card reveal reveal-delay-1">
+      <div class="lc-icon-wrap">✏️</div>
+      <h3>Editing & Proofreading</h3>
+      <p>Layanan penyuntingan naskah akademik untuk memastikan tulisan Anda bebas kesalahan tata bahasa, ejaan, dan konsisten dengan gaya penulisan ilmiah yang berlaku.</p>
+      <ul class="lc-features">
+        <li>Koreksi tata bahasa & ejaan (PUEBI)</li>
+        <li>Penyesuaian gaya penulisan APA/IEEE/Harvard</li>
+        <li>Cek plagiasi & parafrase profesional</li>
+        <li>Editing abstrak Bahasa Inggris</li>
+        <li>Turnaround 2–5 hari kerja</li>
+      </ul>
+      <a href="#kontak" class="lc-link">Kirim Naskah →</a>
+    </div>
+
+    <div class="layanan-card reveal reveal-delay-2">
+      <span class="lc-badge" style="background:linear-gradient(135deg,#F59E0B,#D97706);">Garansi Terbit</span>
+      <div class="lc-icon-wrap">📰</div>
+      <h3>Publikasi Jurnal</h3>
+      <p>Layanan lengkap publikasi jurnal nasional (Sinta 1–6) dan internasional (Scopus, WOS). Kami bantu dari penulisan artikel, submit, hingga proses review dan terbit.</p>
+      <ul class="lc-features">
+        <li>Penulisan artikel dari nol / konversi skripsi</li>
+        <li>Target jurnal Sinta 1–6 & Scopus</li>
+        <li>Proses submit & komunikasi reviewer</li>
+        <li>Garansi artikel terbit atau uang kembali</li>
+        <li>Tersedia opsi fast-track</li>
+      </ul>
+      <a href="#kontak" class="lc-link">Konsultasi Jurnal →</a>
+    </div>
+
+    <div class="layanan-card reveal reveal-delay-3">
+      <div class="lc-icon-wrap">🎓</div>
+      <h3>Pelatihan Akademik</h3>
+      <p>Workshop dan pelatihan intensif untuk mahasiswa dan dosen — mencakup metodologi penelitian, olah data statistik, penulisan ilmiah, dan tips lolos publikasi jurnal.</p>
+      <ul class="lc-features">
+        <li>Workshop metodologi penelitian kualitatif & kuantitatif</li>
+        <li>Pelatihan SPSS, AMOS, SmartPLS, NVivo</li>
+        <li>Kelas penulisan ilmiah & sitasi</li>
+        <li>Webinar tips publikasi jurnal internasional</li>
+        <li>Tersedia offline & online</li>
+      </ul>
+      <a href="#kontak" class="lc-link">Daftar Pelatihan →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROSES KERJA -->
+<section class="proses" id="proses">
+  <div class="proses-bg"></div>
+  <div class="proses-head reveal">
+    <p class="section-eyebrow">Cara Kerja Kami</p>
+    <h2 class="section-title">Proses yang Mudah & Transparan</h2>
+    <p class="section-sub">Hanya 5 langkah sederhana untuk memulai perjalanan akademik Anda bersama ResearchGo.</p>
+  </div>
+  <div class="proses-steps">
+    <div class="step-item reveal">
+      <div class="step-num">1</div>
+      <span class="step-icon">💬</span>
+      <h4>Konsultasi Gratis</h4>
+      <p>Ceritakan kebutuhan & target akademik Anda kepada tim kami.</p>
+    </div>
+    <div class="step-item reveal reveal-delay-1">
+      <div class="step-num">2</div>
+      <span class="step-icon">📋</span>
+      <h4>Analisis Kebutuhan</h4>
+      <p>Kami analisis kebutuhan & rekomendasikan layanan yang tepat.</p>
+    </div>
+    <div class="step-item reveal reveal-delay-2">
+      <div class="step-num">3</div>
+      <span class="step-icon">🤝</span>
+      <h4>Penugasan Konsultan</h4>
+      <p>Konsultan berpengalaman sesuai bidang Anda akan ditugaskan.</p>
+    </div>
+    <div class="step-item reveal reveal-delay-3">
+      <div class="step-num">4</div>
+      <span class="step-icon">⚙️</span>
+      <h4>Proses Pengerjaan</h4>
+      <p>Pengerjaan intensif dengan laporan progres berkala kepada Anda.</p>
+    </div>
+    <div class="step-item reveal">
+      <div class="step-num">5</div>
+      <span class="step-icon">🏆</span>
+      <h4>Hasil & Revisi</h4>
+      <p>Penyerahan hasil final disertai revisi hingga Anda puas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="keunggulan">
+  <div class="why-inner">
+    <div class="why-left reveal">
+      <p class="section-eyebrow">Mengapa ResearchGo</p>
+      <h2 class="section-title">Keunggulan yang Membedakan Kami</h2>
+      <p class="section-sub">Bukan sekadar jasa — kami adalah mitra akademik yang berkomitmen pada kualitas dan integritas keilmuan Anda.</p>
+      <div class="why-list">
+        <div class="why-item">
+          <span class="wi-num">01</span>
+          <div class="wi-body">
+            <strong>Konsultan Bersertifikat & Berpengalaman</strong>
+            <p>Tim kami terdiri dari akademisi, dosen, dan peneliti aktif dengan gelar S2–S3 dari universitas terkemuka.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="wi-num">02</span>
+          <div class="wi-body">
+            <strong>Garansi Kepuasan 100%</strong>
+            <p>Revisi tidak terbatas hingga hasil sesuai harapan Anda. Tidak puas? Kami kembalikan dana Anda.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="wi-num">03</span>
+          <div class="wi-body">
+            <strong>Kerahasiaan Data Terjamin</strong>
+            <p>Semua data dan naskah Anda dilindungi dengan sistem enkripsi dan NDA (Non-Disclosure Agreement).</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <span class="wi-num">04</span>
+          <div class="wi-body">
+            <strong>Layanan 7 Hari Seminggu</strong>
+            <p>Tim support kami siap melayani setiap hari, termasuk akhir pekan dan hari libur nasional.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-visual reveal reveal-delay-2">
+      <div class="why-card">
+        <div class="wc-top">
+          <span>📊 Performa ResearchGo 2024</span>
+          <span class="wc-badge">Update Real-time</span>
+        </div>
+        <div class="wc-stats">
+          <div class="wcs">
+            <span class="wcs-num">2.4K</span>
+            <span class="wcs-label">Klien</span>
+          </div>
+          <div class="wcs">
+            <span class="wcs-num">98%</span>
+            <span class="wcs-label">Puas</span>
+          </div>
+          <div class="wcs">
+            <span class="wcs-num">300+</span>
+            <span class="wcs-label">Jurnal</span>
+          </div>
+        </div>
+        <div class="wc-bar-section">
+          <h5>Tingkat Keberhasilan Per Layanan</h5>
+          <div class="wc-bar-item">
+            <div class="wc-bar-label"><span>Skripsi & Tesis</span><span>97%</span></div>
+            <div class="wc-bar-track"><div class="wc-bar-fill" style="width:97%"></div></div>
+          </div>
+          <div class="wc-bar-item">
+            <div class="wc-bar-label"><span>Editing & Proofreading</span><span>99%</span></div>
+            <div class="wc-bar-track"><div class="wc-bar-fill" style="width:99%"></div></div>
+          </div>
+          <div class="wc-bar-item">
+            <div class="wc-bar-label"><span>Publikasi Jurnal</span><span>94%</span></div>
+            <div class="wc-bar-track"><div class="wc-bar-fill" style="width:94%"></div></div>
+          </div>
+          <div class="wc-bar-item">
+            <div class="wc-bar-label"><span>Pelatihan Akademik</span><span>100%</span></div>
+            <div class="wc-bar-track"><div class="wc-bar-fill" style="width:100%"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="why-float">
+        <span class="wf-num">7+</span>
+        <span class="wf-label">Tahun<br>Pengalaman</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAKET HARGA -->
+<section class="harga" id="paket">
+  <div class="harga-head reveal">
+    <p class="section-eyebrow">Harga Transparan</p>
+    <h2 class="section-title">Pilih Paket yang Sesuai</h2>
+    <p class="section-sub">Paket fleksibel untuk setiap kebutuhan dan anggaran. Tidak menemukan yang cocok? Hubungi kami untuk paket custom.</p>
+  </div>
+  <div class="paket-grid">
+
+    <div class="paket-card reveal">
+      <div class="paket-header">
+        <span class="ph-tag">Starter</span>
+        <h3>Paket Esensial</h3>
+        <span class="paket-price"><sup>Rp</sup>500K</span>
+        <span class="paket-period">per sesi konsultasi</span>
+      </div>
+      <div class="paket-body">
+        <p class="paket-desc">Ideal untuk konsultasi awal, review singkat, atau bantuan spesifik pada bagian tertentu karya Anda.</p>
+        <ul class="paket-features">
+          <li><span class="chk">✓</span> 2x sesi konsultasi (90 menit)</li>
+          <li><span class="chk">✓</span> Review 1 BAB atau 10 halaman</li>
+          <li><span class="chk">✓</span> Feedback tertulis terperinci</li>
+          <li><span class="chk">✓</span> Chat support 3 hari</li>
+          <li class="dim"><span class="x">—</span> Revisi lanjutan</li>
+          <li class="dim"><span class="x">—</span> Pendampingan sidang</li>
+        </ul>
+        <a href="#kontak" class="paket-btn outline">Pilih Paket Ini</a>
+      </div>
+    </div>
+
+    <div class="paket-card featured reveal reveal-delay-1">
+      <div class="featured-badge">⭐ Paling Diminati</div>
+      <div class="paket-header">
+        <span class="ph-tag">Recommended</span>
+        <h3>Paket Komprehensif</h3>
+        <span class="paket-price"><sup>Rp</sup>2.5Jt</span>
+        <span class="paket-period">per karya / proyek</span>
+      </div>
+      <div class="paket-body">
+        <p class="paket-desc" style="color:rgba(255,255,255,0.5)">Paket lengkap untuk skripsi atau tesis dari awal hingga sidang. Bimbingan intensif dan personal.</p>
+        <ul class="paket-features">
+          <li style="color:rgba(255,255,255,0.8)"><span class="chk">✓</span> Konsultasi tak terbatas (3 bulan)</li>
+          <li style="color:rgba(255,255,255,0.8)"><span class="chk">✓</span> Pendampingan penuh BAB 1–5</li>
+          <li style="color:rgba(255,255,255,0.8)"><span class="chk">✓</span> Analisis data (SPSS/SmartPLS)</li>
+          <li style="color:rgba(255,255,255,0.8)"><span class="chk">✓</span> Editing & proofreading final</li>
+          <li style="color:rgba(255,255,255,0.8)"><span class="chk">✓</span> Simulasi sidang + mock Q&A</li>
+          <li style="color:rgba(255,255,255,0.8)"><span class="chk">✓</span> Revisi pasca-sidang gratis</li>
+        </ul>
+        <a href="#kontak" class="paket-btn solid">Mulai Sekarang</a>
+      </div>
+    </div>
+
+    <div class="paket-card reveal reveal-delay-2">
+      <div class="paket-header">
+        <span class="ph-tag">Profesional</span>
+        <h3>Paket Publikasi</h3>
+        <span class="paket-price"><sup>Rp</sup>5Jt</span>
+        <span class="paket-period">per artikel jurnal</span>
+      </div>
+      <div class="paket-body">
+        <p class="paket-desc">Untuk dosen dan peneliti yang ingin mempublikasikan artikel di jurnal nasional & internasional terindeks.</p>
+        <ul class="paket-features">
+          <li><span class="chk">✓</span> Penulisan artikel ilmiah lengkap</li>
+          <li><span class="chk">✓</span> Target Sinta 1–6 atau Scopus</li>
+          <li><span class="chk">✓</span> Proses submit & follow-up</li>
+          <li><span class="chk">✓</span> Respon komentar reviewer</li>
+          <li><span class="chk">✓</span> Garansi terbit atau refund</li>
+          <li><span class="chk">✓</span> Fast-track tersedia (+biaya)</li>
+        </ul>
+        <a href="#kontak" class="paket-btn outline">Diskusi Proyek</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section class="testimoni" id="testimoni">
+  <div class="testimoni-head reveal">
+    <p class="section-eyebrow">Kata Klien Kami</p>
+    <h2 class="section-title">Lebih dari 2.400 Klien Sudah Buktikan</h2>
+    <p class="section-sub">Kepercayaan mereka adalah motivasi terbesar kami untuk terus memberikan yang terbaik.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="tc-quote">"</div>
+      <p class="tc-text">ResearchGo benar-benar mengubah cara pandang saya terhadap penulisan ilmiah. Skripsi saya selesai tepat waktu dan dapat nilai A. Konsultannya sabar dan sangat menguasai bidang manajemen.</p>
+      <div class="tc-bottom">
+        <div class="tc-avatar">A</div>
+        <div>
+          <span class="tc-name">Aulia Rahma</span>
+          <span class="tc-role">Mahasiswa S1 Manajemen, UGM</span>
+          <div class="tc-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="tc-quote">"</div>
+      <p class="tc-text">Alhamdulillah jurnal saya berhasil terbit di Sinta 2 hanya dalam 4 bulan. Tim ResearchGo sangat profesional dalam menangani proses review yang cukup kompleks. Highly recommended!</p>
+      <div class="tc-bottom">
+        <div class="tc-avatar">B</div>
+        <div>
+          <span class="tc-name">Dr. Budi Santoso</span>
+          <span class="tc-role">Dosen, Universitas Diponegoro</span>
+          <div class="tc-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="tc-quote">"</div>
+      <p class="tc-text">Workshop metodologi penelitiannya sangat praktis dan langsung bisa diterapkan. Saya jadi jauh lebih percaya diri menyusun kerangka penelitian tesis S2 saya. Tim pengajarnya luar biasa.</p>
+      <div class="tc-bottom">
+        <div class="tc-avatar">D</div>
+        <div>
+          <span class="tc-name">Dinda Permata</span>
+          <span class="tc-role">Mahasiswa S2 Psikologi, UI</span>
+          <div class="tc-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="faq-left reveal">
+      <p class="section-eyebrow">Pertanyaan Umum</p>
+      <h2 class="section-title">Yang Sering Ditanyakan</h2>
+      <p class="section-sub">Masih ada pertanyaan lain? Tim kami siap membantu Anda setiap saat melalui WhatsApp atau email.</p>
+      <a href="#kontak" class="btn-prim" style="margin-top:2rem;display:inline-block;">Tanya Langsung →</a>
+    </div>
+    <div class="faq-list reveal reveal-delay-1">
+      <div class="faq-item">
+        <button class="faq-q">Apakah layanan ResearchGo menjamin kelulusan saya? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Kami memberikan pendampingan akademik terbaik untuk memaksimalkan kualitas karya Anda. Meskipun keputusan kelulusan sepenuhnya ada di tangan penguji, tingkat keberhasilan klien kami mencapai 97% lulus tepat waktu.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Berapa lama proses konsultasi berlangsung? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Bergantung pada kebutuhan Anda. Konsultasi per-sesi bisa selesai dalam 90 menit, sedangkan pendampingan skripsi/tesis komprehensif biasanya berlangsung 1–3 bulan mengikuti progres Anda.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Apakah data dan naskah saya aman? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Kerahasiaan adalah prioritas kami. Semua klien menandatangani NDA (Non-Disclosure Agreement) dan data Anda tidak pernah dibagikan kepada pihak ketiga dalam bentuk apapun.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Bagaimana cara pembayarannya? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Kami menerima transfer bank, dompet digital (OVO, GoPay, Dana), dan QRIS. Untuk paket besar, tersedia cicilan DP 50% di awal dan pelunasan setelah pengerjaan selesai.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Apakah tersedia konsultasi di luar jam kerja? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Ya! Tim kami aktif 7 hari seminggu termasuk akhir pekan. Untuk chat support tersedia 07.00–22.00 WIB, dan sesi konsultasi via Zoom bisa dijadwalkan sesuai kesepakatan bersama konsultan.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Apa yang dimaksud garansi terbit untuk jurnal? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Jika artikel yang kami bantu tidak berhasil terbit pada jurnal target dalam jangka waktu yang disepakati (umumnya 6–12 bulan), kami akan mencoba jurnal lain setara tanpa biaya tambahan, atau mengembalikan biaya layanan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section class="kontak" id="kontak">
+  <div class="kontak-glow"></div>
+  <div class="kontak-inner">
+    <div class="kontak-left reveal">
+      <p class="section-eyebrow">Hubungi Kami</p>
+      <h2 class="section-title">Siap Memulai?<br>Mari Bicara!</h2>
+      <p class="section-sub">Konsultasi pertama Anda sepenuhnya gratis. Ceritakan kebutuhan Anda dan kami akan rekomendasikan solusi terbaik.</p>
+      <div class="kontak-detail-list">
+        <div class="kontak-detail">
+          <span class="kd-icon">📱</span>
+          <div class="kd-body">
+            <strong>WhatsApp</strong>
+            <span>+62 812-3456-7890 (Chat 07.00–22.00 WIB)</span>
+          </div>
+        </div>
+        <div class="kontak-detail">
+          <span class="kd-icon">📧</span>
+          <div class="kd-body">
+            <strong>Email</strong>
+            <span>konsultasi@researchgo.id</span>
+          </div>
+        </div>
+        <div class="kontak-detail">
+          <span class="kd-icon">📍</span>
+          <div class="kd-body">
+            <strong>Kantor</strong>
+            <span>Jl. Raya Akademika No. 88, Yogyakarta 55281</span>
+          </div>
+        </div>
+        <div class="kontak-detail">
+          <span class="kd-icon">⏰</span>
+          <div class="kd-body">
+            <strong>Jam Layanan</strong>
+            <span>Senin–Minggu, 07.00–22.00 WIB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kontak-form reveal reveal-delay-1">
+      <h3>Formulir Konsultasi Gratis</h3>
+      <p>Isi form berikut, tim kami akan menghubungi dalam 1x2 jam kerja.</p>
+      <div class="form-row">
+        <div class="fg">
+          <label>Nama Lengkap</label>
+          <input type="text" placeholder="Nama Anda">
+        </div>
+        <div class="fg">
+          <label>Nomor WhatsApp</label>
+          <input type="tel" placeholder="+62 8xx-xxxx-xxxx">
+        </div>
+      </div>
+      <div class="fg">
+        <label>Email</label>
+        <input type="email" placeholder="email@anda.com">
+      </div>
+      <div class="fg">
+        <label>Layanan yang Dibutuhkan</label>
+        <select>
+          <option value="">— Pilih Layanan —</option>
+          <option>Konsultasi Skripsi</option>
+          <option>Konsultasi Tesis / Disertasi</option>
+          <option>Editing & Proofreading</option>
+          <option>Publikasi Jurnal (Sinta)</option>
+          <option>Publikasi Jurnal (Scopus/WOS)</option>
+          <option>Pelatihan Akademik</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Ceritakan Kebutuhan Anda</label>
+        <textarea placeholder="Jelaskan singkat kebutuhan/masalah Anda — deadline, bidang studi, dll..."></textarea>
+      </div>
+      <button class="btn-prim" style="width:100%;border:none;font-size:1rem;padding:1rem;" type="submit">
+        Kirim & Mulai Konsultasi Gratis →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#top" class="nav-logo">
+        <div class="logo-mark">Rg</div>
+        <div class="logo-text" style="font-size:1.3rem;">Research<span>Go</span></div>
+      </a>
+      <p>Mitra konsultasi penulisan akademik profesional terpercaya. Bersama kami, karya terbaik Anda bukan sekadar mimpi.</p>
+      <div class="footer-social">
+        <a href="#" class="fs-link">📘</a>
+        <a href="#" class="fs-link">📸</a>
+        <a href="#" class="fs-link">🎵</a>
+        <a href="#" class="fs-link">▶️</a>
+        <a href="#" class="fs-link">💼</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Layanan</h4>
+      <ul class="footer-links">
+        <li><a href="#layanan">Konsultasi Skripsi & Tesis</a></li>
+        <li><a href="#layanan">Editing & Proofreading</a></li>
+        <li><a href="#layanan">Publikasi Jurnal</a></li>
+        <li><a href="#layanan">Pelatihan Akademik</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Perusahaan</h4>
+      <ul class="footer-links">
+        <li><a href="#">Tentang Kami</a></li>
+        <li><a href="#">Tim Konsultan</a></li>
+        <li><a href="#testimoni">Testimoni</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#">Karir</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul class="footer-links">
+        <li><a href="#">Kebijakan Privasi</a></li>
+        <li><a href="#">Syarat & Ketentuan</a></li>
+        <li><a href="#">Kebijakan Refund</a></li>
+        <li><a href="#">NDA & Kerahasiaan</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 ResearchGo. All Rights Reserved. | Dibuat dengan ❤️ untuk kemajuan akademik Indonesia</p>
+    <p><a href="#">Kebijakan Privasi</a> · <a href="#">Syarat & Ketentuan</a></p>
+  </div>
+</footer>
+
+<script>
+// ─── SCROLL REVEAL ───
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ─── FAQ ACCORDION ───
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-a');
+    const isOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-a').classList.remove('open');
+    });
+    if(!isOpen){ item.classList.add('open'); answer.classList.add('open'); }
+  });
+});
+
+// ─── MOBILE NAV ───
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+let navOpen = false;
+hamburger.addEventListener('click', () => {
+  navOpen = !navOpen;
+  if(navOpen){
+    navLinks.style.cssText = `
+      display:flex;flex-direction:column;position:fixed;
+      top:68px;left:0;right:0;
+      background:rgba(5,13,26,0.98);backdrop-filter:blur(16px);
+      padding:1.5rem 6%;gap:1.2rem;z-index:998;
+      border-bottom:1px solid rgba(59,130,246,0.15);
+    `;
+  } else {
+    navLinks.style.display = 'none';
+  }
+});
+
+// close on link click
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    navOpen = false;
+    navLinks.style.display = 'none';
+  });
+});
+
+// ─── NAV SCROLL EFFECT ───
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.borderBottomColor = window.scrollY > 50
+    ? 'rgba(59,130,246,0.25)'
+    : 'rgba(59,130,246,0.15)';
+});
+
+// ─── SMOOTH SCROLL ───
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+</script>
+</body>
+</html>
